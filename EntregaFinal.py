@@ -212,6 +212,7 @@ def main():
         "Resultados"
     ]
 
+    completed_sections = sum(1 for score in st.session_state.scores if score > 0)
     # Muestra el contenido de la página actual
     page = pages[st.session_state.current_page]
 
@@ -292,6 +293,7 @@ def main():
             if st.button('Siguiente Página'):
                 st.session_state.current_page += 1
                 st.rerun()
-   
+    st.write(f"Sección actual: {pages[st.session_state.current_page]}")
+    st.write(f"Secciones completadas: {completed_sections} de {len(pages) - 2}")  # Excluye 'Resultados'
 if __name__ == '__main__':
     main()
