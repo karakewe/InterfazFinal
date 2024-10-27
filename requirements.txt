@@ -2,5 +2,5 @@ streamlit==1.37.0
 matplotlib
 numpy
 python-io
-os
+python-os
 python-docx
