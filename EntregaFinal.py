@@ -1,6 +1,20 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+from docx import Document
+from docx.shared import Cm,Pt
+import io
+from docx.oxml.ns import nsdecls
+from docx.oxml import parse_xml
+from docx.enum.table import WD_ALIGN_VERTICAL
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+from docx.enum.section import WD_SECTION
+
+
+doc = Document()
+
+doc.add_heading('Resultados Rueda de la Vida', 0)
 
 # Función para cada sección
 def bienestar_social():
@@ -19,9 +33,26 @@ def bienestar_social():
     ]
     values = []
     for question in questions:
-        value = st.radio(question, options=[0, 1, 2])  # Selección de valores 0, 1 o 2
-        values.append(value)
-    return np.mean(values)  # Retornar el promedio de las respuestas
+        doc.add_paragraph(question)
+        value = st.selectbox(question, options=["Selecciona una opción","Muy raramente", "A veces", "Casi siempre"])  # Selección de valores 0, 1 o 2
+        if value == "Muy raramente":
+            doc.add_paragraph(value)
+            value = 0
+            values.append(value)
+            
+        elif value == "A veces":
+            doc.add_paragraph(value)
+            value = 1
+            values.append(value)
+        elif value == "Casi siempre":
+            doc.add_paragraph(value)
+            value = 2
+            values.append(value)
+        else:
+            values.append(None)  # Manejar como prefieras
+
+    # Retornar el promedio, omitiendo None
+    return np.nanmean([v for v in values if v is not None])
 
 def bienestar_intelectual():
      
@@ -39,9 +70,21 @@ def bienestar_intelectual():
     ]
     values = []
     for question in questions:
-        value = st.radio(question, options=[0, 1, 2])
-        values.append(value)
-    return np.mean(values)
+        value = st.selectbox(question, options=["Selecciona una opción","Muy raramente", "A veces", "Casi siempre"])  # Selección de valores 0, 1 o 2
+        if value == "Muy raramente":
+            value = 0
+            values.append(value)
+        elif value == "A veces":
+            value = 1
+            values.append(value)
+        elif value == "Casi siempre":
+            value = 2
+            values.append(value)
+        else:
+            values.append(None)  # Manejar como prefieras
+
+    # Retornar el promedio, omitiendo None
+    return np.nanmean([v for v in values if v is not None])
 
 def bienestar_ocupacional():
     questions = [
@@ -58,9 +101,21 @@ def bienestar_ocupacional():
     ]
     values = []
     for question in questions:
-        value = st.radio(question, options=[0, 1, 2])
-        values.append(value)
-    return np.mean(values)
+        value = st.selectbox(question, options=["Selecciona una opción","Muy raramente", "A veces", "Casi siempre"])  # Selección de valores 0, 1 o 2
+        if value == "Muy raramente":
+            value = 0
+            values.append(value)
+        elif value == "A veces":
+            value = 1
+            values.append(value)
+        elif value == "Casi siempre":
+            value = 2
+            values.append(value)
+        else:
+            values.append(None)  # Manejar como prefieras
+
+    # Retornar el promedio, omitiendo None
+    return np.nanmean([v for v in values if v is not None])
 
 def bienestar_emocional():
 
@@ -78,9 +133,21 @@ def bienestar_emocional():
     ]
     values = []
     for question in questions:
-        value = st.radio(question, options=[0, 1, 2])
-        values.append(value)
-    return np.mean(values)
+        value = st.selectbox(question, options=["Selecciona una opción","Muy raramente", "A veces", "Casi siempre"])  # Selección de valores 0, 1 o 2
+        if value == "Muy raramente":
+            value = 0
+            values.append(value)
+        elif value == "A veces":
+            value = 1
+            values.append(value)
+        elif value == "Casi siempre":
+            value = 2
+            values.append(value)
+        else:
+            values.append(None)  # Manejar como prefieras
+
+    # Retornar el promedio, omitiendo None
+    return np.nanmean([v for v in values if v is not None])
 
 def bienestar_espiritual():
     
@@ -98,9 +165,21 @@ def bienestar_espiritual():
     ]
     values = []
     for question in questions:
-        value = st.radio(question, options=[0, 1, 2])
-        values.append(value)
-    return np.mean(values)
+        value = st.selectbox(question, options=["Selecciona una opción","Muy raramente", "A veces", "Casi siempre"])  # Selección de valores 0, 1 o 2
+        if value == "Muy raramente":
+            value = 0
+            values.append(value)
+        elif value == "A veces":
+            value = 1
+            values.append(value)
+        elif value == "Casi siempre":
+            value = 2
+            values.append(value)
+        else:
+            values.append(None)  # Manejar como prefieras
+
+    # Retornar el promedio, omitiendo None
+    return np.nanmean([v for v in values if v is not None])
 
 def bienestar_financiero():
     
@@ -118,9 +197,21 @@ def bienestar_financiero():
     ]
     values = []
     for question in questions:
-        value = st.radio(question, options=[0, 1, 2])
-        values.append(value)
-    return np.mean(values)
+        value = st.selectbox(question, options=["Selecciona una opción","Muy raramente", "A veces", "Casi siempre"])  # Selección de valores 0, 1 o 2
+        if value == "Muy raramente":
+            value = 0
+            values.append(value)
+        elif value == "A veces":
+            value = 1
+            values.append(value)
+        elif value == "Casi siempre":
+            value = 2
+            values.append(value)
+        else:
+            values.append(None)  # Manejar como prefieras
+
+    # Retornar el promedio, omitiendo None
+    return np.nanmean([v for v in values if v is not None])
 
 def bienestar_fisico():
     
@@ -138,25 +229,21 @@ def bienestar_fisico():
     ]
     values = []
     for question in questions:
-        value = st.radio(question, options=[0, 1, 2])
-        values.append(value)
-    return np.mean(values)
+        value = st.selectbox(question, options=["Selecciona una opción","Muy raramente", "A veces", "Casi siempre"])  # Selección de valores 0, 1 o 2
+        if value == "Muy raramente":
+            value = 0
+            values.append(value)
+        elif value == "A veces":
+            value = 1
+            values.append(value)
+        elif value == "Casi siempre":
+            value = 2
+            values.append(value)
+        else:
+            values.append(None)  # Manejar como prefieras
 
-def bienvenida_encuesta():
-    st.write("""
-    Esta encuesta tiene como objetivo evaluar diferentes dimensiones de tu bienestar.
-    A través de una serie de preguntas, podrás reflexionar sobre aspectos importantes de tu vida en las siguientes áreas:
-    - Bienestar Social
-    - Bienestar Intelectual
-    - Bienestar Ocupacional
-    - Bienestar Emocional
-    - Bienestar Espiritual
-    - Bienestar Financiero
-    - Bienestar Físico
-
-    Por favor, responde cada pregunta con sinceridad. Al final de la encuesta, podrás ver un gráfico que refleja tu bienestar en cada una de estas dimensiones.
-    """)
-    return 0
+    # Retornar el promedio, omitiendo None
+    return np.nanmean([v for v in values if v is not None])
 
 # Configuración de la aplicación Streamlit
 def radar_chart(values):
@@ -164,8 +251,14 @@ def radar_chart(values):
     N = len(categories)
     angles = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
 
-    values += values[:1]
-    angles += angles[:1]
+    # Asegúrate de que los valores tengan la misma longitud
+    values = values + [values[0]]  # Cierra el gráfico
+    angles += angles[:1]  # Cierra el gráfico en el círculo
+
+    # Comprobación de longitud
+    if len(values) != len(angles):
+        st.error("Error: Las dimensiones de los valores y ángulos no coinciden.")
+        return None
 
     fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
     ax.fill(angles, values, color='skyblue', alpha=0.4)
@@ -187,6 +280,38 @@ def feedback(scores):
         else:
             feedbacks.append("Alto: ¡Excelente! Estás haciendo un gran trabajo en esta área.")
     return feedbacks
+
+def resultado(results):
+    resultados = []
+    for score in results:
+        resultados.append(score)
+    return resultados
+
+def imagen_gráfico(values):
+    categories = ['Social', 'Intelectual', 'Ocupacional', 'Emocional', 'Espiritual', 'Financiero', 'Físico']
+    N = len(categories)
+    angles = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
+
+    # Asegúrate de que los valores tengan la misma longitud
+    values = values + [values[0]]  # Cierra el gráfico
+    angles += angles[:1]  # Cierra el gráfico en el círculo
+
+    # Comprobación de longitud
+    if len(values) != len(angles):
+        st.error("Error: Las dimensiones de los valores y ángulos no coinciden.")
+        return None
+
+    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+    ax.fill(angles, values, color='skyblue', alpha=0.4)
+    ax.plot(angles, values, color='blue', linewidth=2, linestyle='solid')
+    ax.set_yticks(np.arange(0, 3, 1))
+    ax.set_yticklabels([])
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(categories, fontsize=12)
+
+    plt.savefig('grafica_resultados.png', format='png', bbox_inches='tight')
+    plt.close()  # Cerrar la figura para liberar memoria
+    return 'grafica_resultados.png'  # Devolver la ruta del archivo
 
 def main():
     st.title('Bienvenido a la Rueda de la Vida')
@@ -212,7 +337,9 @@ def main():
         "Resultados"
     ]
 
-    completed_sections = sum(1 for score in st.session_state.scores if score > 0)
+ # Calcular cuántas secciones se han completado
+    completed_sections = sum(1 for score in st.session_state.scores if score != 0)
+
     # Muestra el contenido de la página actual
     page = pages[st.session_state.current_page]
 
@@ -270,9 +397,99 @@ def main():
         st.header('Resultados')
         if all(score > 0 for score in st.session_state.scores):
             st.pyplot(radar_chart(st.session_state.scores))
+            
+            st.link_button("MiTec","https://mitec.itesm.mx/?_gl=1*10jvpnu*_gcl_aw*R0NMLjE3Mjk1Mjg3MTEuQ2owS0NRanc5OWU0QmhEaUFSSXNBSVNFN1A4aUxFN1RPQndIdWRYbGp3bFpNS05rUjYwRVZkRmVBcHlzaEMtcWNOT3R3dG1kV3lRbDA5a2FBby1hRUFMd193Y0I.*_gcl_au*OTI3NDE3MTM2LjE3Mjk1Mjg2NjY.*_ga*MjExNTg0MjAyOS4xNjgwNzMyMDY4*_ga_D9LSDN87GD*MTczMDA1NzM4Ny40MC4wLjE3MzAwNTczODcuNjAuMC4zMzY4MDIzODI.")
+            
+            graph_path = imagen_gráfico(st.session_state.scores)  # Guarda la gráfica
+
+            doc.add_heading("Resultados")
+            doc.add_picture(graph_path)
+
+            
+            resultados_dados = resultado(st.session_state.scores)
+            records = (
+                (1, "Bienestar Social", resultados_dados[0]*10),
+                (2, "Bienestar Intelectual", resultados_dados[1]*10),
+                (3, "Bienestar Ocupacional", resultados_dados[2]*10),
+                (4, "Bienestar Emocional", resultados_dados[3]*10),
+                (5, "Bienestar Espiritual", resultados_dados[4]*10),
+                (6, "Bienestar Financiero", resultados_dados[5]*10),
+                (7, "Bienestar Físico", resultados_dados[6]*10)
+            )
+
+            doc.add_section(WD_SECTION.NEW_PAGE)
+
+            # Luego, puedes agregar un título o texto en esa sección
+            doc.add_paragraph("Tabla de Resultados")
+
+            # Crear tabla en el documento
+    
+            tabla = doc.add_table(rows=1, cols=3)
+            tabla.style = 'Table Grid'  # Puedes usar 'Table Grid', 'Light Shading', 'Colorful List', etc.
+
+            # Encabezado de la tabla
+            hdr_cells = tabla.rows[0].cells
+            hdr_cells[0].text = 'Index'
+            hdr_cells[1].text = 'Tipo de Bienestar'
+            hdr_cells[2].text = 'Resultado'
+
+            # Formato del encabezado
+            for cell in hdr_cells:
+                cell.paragraphs[0].runs[0].font.bold = True
+                cell.paragraphs[0].alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+                cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+                cell.paragraphs[0].runs[0].font.size = Pt(12)
+
+            # Colores de fondo
+            hdr_cells[0]._element.get_or_add_tcPr().append(parse_xml(r'<w:shd {} w:fill="B7D7E8"/>'.format(nsdecls('w'))))
+            hdr_cells[1]._element.get_or_add_tcPr().append(parse_xml(r'<w:shd {} w:fill="B7D7E8"/>'.format(nsdecls('w'))))
+            hdr_cells[2]._element.get_or_add_tcPr().append(parse_xml(r'<w:shd {} w:fill="B7D7E8"/>'.format(nsdecls('w'))))
+
+            # Rellenar la tabla con datos y aplicar formato
+            for qty, id, desc in records:
+                row_cells = tabla.add_row().cells
+                row_cells[0].text = str(qty)
+                row_cells[1].text = str(id)
+                row_cells[2].text = str(desc)
+
+                # Alineación de las celdas y estilo de fuente
+                for cell in row_cells:
+                    cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+                    cell.paragraphs[0].alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+                    cell.paragraphs[0].runs[0].font.size = Pt(11)
+
+                # Alternar color de fondo para filas
+                for i, cell in enumerate(row_cells):
+                    if qty % 2 == 0:  # Cambia el color en filas pares
+                        cell._element.get_or_add_tcPr().append(parse_xml(r'<w:shd {} w:fill="E3F2FD"/>'.format(nsdecls('w'))))
+                        hdr_cells = tabla.rows[0].cells
+                        hdr_cells[0].text = 'Index'
+                        hdr_cells[1].text = 'Tipo de Bienestar'
+                        hdr_cells[2].text = 'Resultado'
+
+            doc.add_heading("Retroalimentación")
             feedback_scores = feedback(st.session_state.scores)
             for category, score in zip(['Social', 'Intelectual', 'Ocupacional', 'Emocional', 'Espiritual', 'Financiero', 'Físico'], feedback_scores):
-                st.write(f"{category}: {score}")
+                doc.add_paragraph(f"{category}: {score}")
+
+            doc_download = doc
+
+            bio = io.BytesIO()
+            doc_download.save(bio)
+            if doc_download:
+                st.download_button(
+                    label="Descarga tus resultados Resultados",
+                    data=bio.getvalue(),
+                    file_name="Resultados.docx",
+                    mime="docx"
+                )
+            
+            if os.path.exists(graph_path):
+                with open(graph_path, "rb") as file:
+                    if st.download_button("Descargar imagen", file, "resultados.png", "image/png"):
+                        st.success("Captura de pantalla guardada como 'resultados.png'.")
+                    
+
         else:
             st.warning("Por favor, completa todas las secciones antes de ver los resultados.")
 
@@ -293,7 +510,9 @@ def main():
             if st.button('Siguiente Página'):
                 st.session_state.current_page += 1
                 st.rerun()
+            
     st.write(f"Sección actual: {pages[st.session_state.current_page]}")
     st.write(f"Secciones completadas: {completed_sections} de {len(pages) - 2}")  # Excluye 'Resultados'
+
 if __name__ == '__main__':
     main()
