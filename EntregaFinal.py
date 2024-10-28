@@ -314,7 +314,7 @@ def imagen_gráfico(values):
     return 'grafica_resultados.png'  # Devolver la ruta del archivo
 
 def main():
-    st.title('Bienvenido a la Rueda de la Vida')
+    st.title('Rueda de la Vida')
 
     # Inicializa la sesión para el estado actual
     if 'current_page' not in st.session_state:
