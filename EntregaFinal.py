@@ -222,7 +222,7 @@ def bienestar_fisico():
         "Uso un cinturón de seguridad mientras viajo en o conduzco un automóvil.",
         "Minimizo deliberadamente mi ingesta de colesterol, grasas y aceites.",
         "Evito tomar bebidas alcohólicas o no consumo más de una bebida por día.",
-        "Tengo una cantidad adecuada de agua.",
+        "Tengo una cantidad adecuada de sueño.",
         "Tengo mecanismos adecuados para enfrentar el estrés.",
         "Mantengo un horario regular de inmunizaciones, exámenes físicos, chequeos dentales y autoexámenes.",
         "Mantengo un peso razonable, evitando los extremos de sobrepeso y bajo peso."
