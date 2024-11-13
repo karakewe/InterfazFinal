@@ -390,7 +390,8 @@ def main():
         st.header('Resultados')
         if all(score > 0 for score in st.session_state.scores):
             st.pyplot(radar_chart(st.session_state.scores))
-            
+
+            st.link_button("MiTec","https://mitec.itesm.mx/?_gl=1*10jvpnu*_gcl_aw*R0NMLjE3Mjk1Mjg3MTEuQ2owS0NRanc5OWU0QmhEaUFSSXNBSVNFN1A4aUxFN1RPQndIdWRYbGp3bFpNS05rUjYwRVZkRmVBcHlzaEMtcWNOT3R3dG1kV3lRbDA5a2FBby1hRUFMd193Y0I.*_gcl_au*OTI3NDE3MTM2LjE3Mjk1Mjg2NjY.*_ga*MjExNTg0MjAyOS4xNjgwNzMyMDY4*_ga_D9LSDN87GD*MTczMDA1NzM4Ny40MC4wLjE3MzAwNTczODcuNjAuMC4zMzY4MDIzODI.")
             st.link_button("TecExplorerMTY","https://tec.rs/TecExplorerMTY")
             
             graph_path = imagen_gráfico(st.session_state.scores)  # Guarda la gráfica
