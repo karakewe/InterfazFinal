@@ -360,37 +360,30 @@ def main():
 
     elif page == "Bienestar Social":
         st.header('Bienestar Social')
-        st.write('PUNTUACIÓN: Casi siempre = 2 puntos | A veces/ ocasionalmente = 1 punto | Muy raramente = 0 puntos')
         st.session_state.scores[0] = bienestar_social()
 
     elif page == "Bienestar Intelectual":
         st.header('Bienestar Intelectual')
-        st.write('PUNTUACIÓN: Casi siempre = 2 puntos | A veces/ ocasionalmente = 1 punto | Muy raramente = 0 puntos')
         st.session_state.scores[1] = bienestar_intelectual()
 
     elif page == "Bienestar Ocupacional":
         st.header('Bienestar Ocupacional')
-        st.write('PUNTUACIÓN: Casi siempre = 2 puntos | A veces/ ocasionalmente = 1 punto | Muy raramente = 0 puntos')
         st.session_state.scores[2] = bienestar_ocupacional()
 
     elif page == "Bienestar Emocional":
         st.header('Bienestar Emocional')
-        st.write('PUNTUACIÓN: Casi siempre = 2 puntos | A veces/ ocasionalmente = 1 punto | Muy raramente = 0 puntos')
         st.session_state.scores[3] = bienestar_emocional()
 
     elif page == "Bienestar Espiritual":
         st.header('Bienestar Espiritual')
-        st.write('PUNTUACIÓN: Casi siempre = 2 puntos | A veces/ ocasionalmente = 1 punto | Muy raramente = 0 puntos')
         st.session_state.scores[4] = bienestar_espiritual()
 
     elif page == "Bienestar Financiero":
         st.header('Bienestar Financiero')
-        st.write('PUNTUACIÓN: Casi siempre = 2 puntos | A veces/ ocasionalmente = 1 punto | Muy raramente = 0 puntos')
         st.session_state.scores[5] = bienestar_financiero()
 
     elif page == "Bienestar Físico":
         st.header('Bienestar Físico')
-        st.write('PUNTUACIÓN: Casi siempre = 2 puntos | A veces/ ocasionalmente = 1 punto | Muy raramente = 0 puntos')
         st.session_state.scores[6] = bienestar_fisico()
 
     elif page == "Resultados":
