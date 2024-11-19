@@ -1030,10 +1030,11 @@ def main():
         st.header('Resultados')
         if all(score > 0 for score in st.session_state.scores):
             st.pyplot(radar_chart(st.session_state.scores))
+
+            st.write(f"Sección actual: {pages[st.session_state.current_page]}")
+            st.write(f"Secciones completadas: {completed_sections} de {len(pages) - 2}")  
             
             st.link_button("MiTec","https://mitec.itesm.mx/?_gl=1*10jvpnu*_gcl_aw*R0NMLjE3Mjk1Mjg3MTEuQ2owS0NRanc5OWU0QmhEaUFSSXNBSVNFN1A4aUxFN1RPQndIdWRYbGp3bFpNS05rUjYwRVZkRmVBcHlzaEMtcWNOT3R3dG1kV3lRbDA5a2FBby1hRUFMd193Y0I.*_gcl_au*OTI3NDE3MTM2LjE3Mjk1Mjg2NjY.*_ga*MjExNTg0MjAyOS4xNjgwNzMyMDY4*_ga_D9LSDN87GD*MTczMDA1NzM4Ny40MC4wLjE3MzAwNTczODcuNjAuMC4zMzY4MDIzODI.")
-            
-            st.link_button("TecExplorerMTY","https://tec.rs/TecExplorerMTY")
 
             graph_path = imagen_gráfico(st.session_state.scores)  # Guarda la gráfica
 
@@ -1065,7 +1066,7 @@ def main():
             # Encabezado de la tabla
             hdr_cells = tabla.rows[0].cells
             hdr_cells[0].text = 'Index'
-            hdr_cells[1].text = 'Tipo de Bienestar'
+            hdr_cells[1].text = 'Tipo de Competencia'
             hdr_cells[2].text = 'Resultado'
 
             # Formato del encabezado
@@ -1099,7 +1100,7 @@ def main():
                         cell._element.get_or_add_tcPr().append(parse_xml(r'<w:shd {} w:fill="E3F2FD"/>'.format(nsdecls('w'))))
                         hdr_cells = tabla.rows[0].cells
                         hdr_cells[0].text = 'Index'
-                        hdr_cells[1].text = 'Tipo de Bienestar'
+                        hdr_cells[1].text = 'Tipo de Competencia'
                         hdr_cells[2].text = 'Resultado'
 
             doc.add_heading("Retroalimentación")
@@ -1123,7 +1124,9 @@ def main():
                 with open(graph_path, "rb") as file:
                     if st.download_button("Descargar imagen", file, "resultados.png", "image/png"):
                         st.success("Captura de pantalla guardada como 'resultados.png'.")
-                    
+
+            st.subheader("Recursos de Apoyo")
+            st.link_button("TecExplorerMTY","https://tec.rs/TecExplorerMTY")
 
         else:
             st.warning("Por favor, completa todas las secciones antes de ver los resultados.")
@@ -1146,8 +1149,9 @@ def main():
                 st.session_state.current_page += 1
                 st.rerun()
             
-    st.write(f"Sección actual: {pages[st.session_state.current_page]}")
-    st.write(f"Secciones completadas: {completed_sections} de {len(pages) - 2}")  # Excluye 'Resultados'
+    if st.session_state.current_page < len(pages) - 1:
+        st.write(f"Sección actual: {pages[st.session_state.current_page]}")
+        st.write(f"Secciones completadas: {completed_sections} de {len(pages) - 2}")  
 
 if __name__ == '__main__':
     main()
